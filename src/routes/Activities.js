@@ -20,10 +20,12 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
 
   // add, modify and delete handlers
   const addActivityPress = () => {
-
+    setActivityIndex(-1);
+    history.push('/activities/add');
   };
   const modifyActivityPress = activityID => {
-
+    setActivityIndex(activityID);
+    history.push(`/activities/modify/${activityID}`);
   };
   const deleteActivityPress = activityID => {
     clients.sam.deleteActivity(activityID)
@@ -39,7 +41,6 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
         setSnackbarMessage('The activity was not deleted');
       })
       .finally(() => {
-        console.log('finalrfjdhofgdjhofg');
         setSnackbarVisible(true)
       });
   };
@@ -66,18 +67,19 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
         md={9}
         lg={6}
       >
+        <h1>Activities</h1>
         {
           activities.map((activity, index) =>
             <Card key={index} title={activity.name}>
               <CardContent>
-                <h1>{activity.name}</h1>
+                <h3>{activity.name}</h3>
                 <IconButton
                   onClick={() => history.push(`/activities/details/${activity['_id']}`)}
                 >
                   <Subject />
                 </IconButton>
                 <IconButton
-                  onClick={() => history.push(`/activities/modify/${activity['_id']}`)}
+                  onClick={() => modifyActivityPress(activity['_id'])}
                 >
                   <Edit />
                 </IconButton>

@@ -9,6 +9,7 @@ import { addActivity } from '../store/actions';
 import util from '../util';
 
 import clients from '../clients';
+import ActivityEditorForm from '../components/input/ActivityEditorForm';
 
 const ActivityAddForm = ({ history, addActivity }) => {
   const handleAdd = async activityDetails => {
@@ -34,11 +35,14 @@ const ActivityAddForm = ({ history, addActivity }) => {
       item
       xs={12}
       md={9}
-      lg={6}w
+      lg={6}
     >
       <Card>
         <CardContent>
           <h1>Add a new activity</h1>
+          <ActivityEditorForm
+            editing={false}
+          />
           <IconButton
             onClick={() => history.goBack()}
           >

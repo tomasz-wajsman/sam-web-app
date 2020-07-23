@@ -21,7 +21,7 @@ const ActivityDetails = ({ activities, history }) => {
       >
         <Card title={details.name || 'Default title'}>
           <CardContent>
-            <h1>{details.name}</h1>
+            <h3>{details.name}</h3>
             <p>{`Category: ${details.category || "uncategorized"}`}</p>
             <p>{`Start date: ${util.date.unixToDate(details.start_date)}`}</p>
             <p>{`End date: ${util.date.unixToDate(details.start_date)}`}</p>

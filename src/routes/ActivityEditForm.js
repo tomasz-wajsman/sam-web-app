@@ -9,6 +9,7 @@ import { modifyActivity } from '../store/actions';
 import util from '../util';
 
 import clients from '../clients';
+import ActivityEditorForm from '../components/input/ActivityEditorForm';
 
 const ActivityEditForm = ({ history, modifyActivity }) => {
   const handleAdd = async activityDetails => {
@@ -39,6 +40,9 @@ const ActivityEditForm = ({ history, modifyActivity }) => {
       <Card>
         <CardContent>
           <h1>Edit an activity</h1>
+          <ActivityEditorForm
+            editing={true}
+          />
           <IconButton
             onClick={() => history.goBack()}
           >
