@@ -23,11 +23,10 @@ const ActivityAddForm = ({ history, addActivity }) => {
       const res = await clients.sam.createActivity(details);
       if (res) {
         addActivity(res);
+        history.goBack();
       }
     } catch (e) {
-
-    } finally {
-
+      alert('Could not add the activity');
     }
   };
   return (
@@ -42,6 +41,7 @@ const ActivityAddForm = ({ history, addActivity }) => {
           <h1>Add a new activity</h1>
           <ActivityEditorForm
             editing={false}
+            onSubmit={handleAdd}
           />
           <IconButton
             onClick={() => history.goBack()}
