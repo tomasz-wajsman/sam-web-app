@@ -19,6 +19,7 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
   const [snackbarMessage, setSnackbarMessage] = useState('Message');
 
   // add, modify and delete handlers
+  const getActivityIndexByID = activityID => activities.findIndex(activity => activity['_id'] === activityID);
   const addActivityPress = () => {
     setActivityIndex(-1);
     history.push('/activities/add');
@@ -31,7 +32,7 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
     clients.sam.deleteActivity(activityID)
       .then(res => {
         if (res) {
-          deleteActivity(activityID);
+          deleteActivity(getActivityIndexByID(activityID));
           setSnackbarStyle('success');
           setSnackbarMessage('The activity was deleted');
         }
