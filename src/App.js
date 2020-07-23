@@ -1,10 +1,9 @@
 import React from 'react';
+import AppRouter from './routes';
 
 function App() {
   return (
-    <div className="container">
-      <p>Hello world</p>
-    </div>
+    <AppRouter />
   );
 }
 
