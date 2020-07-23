@@ -4,11 +4,9 @@ import { connect } from 'react-redux';
 import store from './store';
 import { setActivities } from './store/actions';
 
-import SamClient from './clients/sam';
-import config from './config/config.json';
 import AppRouter from './routes';
 
-const client = new SamClient(config.api_url);
+import clients from './clients';
 
 const Root = ({ setActivities }) => {
   // loading
@@ -19,7 +17,7 @@ const Root = ({ setActivities }) => {
   const loadActivities = () => {
     let activities;
     setLoading(true);
-    client.getActivities()
+    clients.sam.getActivities()
       .then(res => {
         activities = res;
         setLoadingFailed(false);
