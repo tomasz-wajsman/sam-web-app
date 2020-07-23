@@ -1,9 +1,19 @@
-import React from 'react';
-import AppRouter from './routes';
+import React, { useState, useEffect } from 'react';
+import { Provider as ReduxProvider } from 'react-redux';
 
-function App() {
+import store from './store';
+
+import SamClient from './clients/sam';
+import config from './config/config.json';
+import Root from './Root';
+
+const client = new SamClient(config.api_url);
+
+const App = () => { 
   return (
-    <AppRouter />
+    <ReduxProvider store={store}>
+      <Root />
+    </ReduxProvider>
   );
 }
 
