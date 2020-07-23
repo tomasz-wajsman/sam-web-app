@@ -11,22 +11,24 @@ import util from '../util';
 import clients from '../clients';
 import ActivityEditorForm from '../components/input/ActivityEditorForm';
 
-const ActivityEditForm = ({ history, modifyActivity }) => {
-  const handleAdd = async activityDetails => {
+const ActivityEditForm = ({ history, activities, modifyActivity }) => {
+  const getActivityIndexByID = activityID => activities.findIndex(activity => activity['_id'] === activityID);
+  const handleEdit = async (activityID, activityDetails) => {
     // add an activity
     const details = { ...activityDetails };
     try {
       // convert dates to Unix format
       details.start_date = util.date.dateToUnix(activityDetails.start_date);
       details.end_date = util.date.dateToUnix(activityDetails.end_date);
+      details['_id'] = activityID;
       // add the activity
-      const res = await clients.sam.modifyActivity(details['_id'], details);
+      console.error(activityID, details)
+      const res = await clients.sam.modifyActivity(activityID, details);
       if (res) {
-        modifyActivity(res);
+        console.log(getActivityIndexByID(activityID),'index');
+        modifyActivity(getActivityIndexByID(activityID), details);
       }
     } catch (e) {
-
-    } finally {
 
     }
   };
@@ -42,6 +44,7 @@ const ActivityEditForm = ({ history, modifyActivity }) => {
           <h1>Edit an activity</h1>
           <ActivityEditorForm
             editing={true}
+            onSubmit={handleEdit}
           />
           <IconButton
             onClick={() => history.goBack()}
@@ -54,8 +57,11 @@ const ActivityEditForm = ({ history, modifyActivity }) => {
   );
 };
 
+const mapStateToProps = state => {
+  return { activities: state.activities.items };
+};
 const mapDispatchToProps = {
   modifyActivity
 };
 
-export default withRouter(connect(null, mapDispatchToProps)(ActivityEditForm));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ActivityEditForm));
