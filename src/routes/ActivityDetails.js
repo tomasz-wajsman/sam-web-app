@@ -24,7 +24,7 @@ const ActivityDetails = ({ activities, history }) => {
             <h3>{details.name}</h3>
             <p>{`Category: ${details.category || "uncategorized"}`}</p>
             <p>{`Start date: ${util.date.unixToDate(details.start_date)}`}</p>
-            <p>{`End date: ${util.date.unixToDate(details.start_date)}`}</p>
+            <p>{`End date: ${util.date.unixToDate(details.end_date)}`}</p>
             {details.distance
               ? <p>{`Distance: ${details.distance} meters`}</p>
               : <></>
