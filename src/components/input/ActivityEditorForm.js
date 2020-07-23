@@ -9,6 +9,7 @@ import util from '../../util';
 import { connect } from 'react-redux';
 import { Button } from '@material-ui/core';
 import { useParams } from 'react-router';
+import SamClient from '../../clients/sam';
 
 const ActivityEditorForm = ({ onSubmit, editing, activities, selectedActivityIndex }) => {
   const getActivityIndexByID = activityID => activities.findIndex(activity => activity['_id'] === activityID);
@@ -116,16 +117,17 @@ const ActivityEditorForm = ({ onSubmit, editing, activities, selectedActivityInd
   };
 
   const submit = () => {
-    if (editing) {
-      // edit mode
-      
+    if (!SamClient.checkActivityDetails(input)) {
+      // show error message
+      alert('Data validation error. One or more of the mandatory details is missing or incorrect. Please check them.');
+    } else if (editing) {
+      // edit an existing activity
+      onSubmit(id, input);
     } else {
-      // add mode
-
+      // add a new activity
+      onSubmit(input);
     }
   };
-  
-  console.log(selectedActivityIndex)
 
   return (
     <div>
