@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { Button, Card, CardContent, IconButton, Grid } from '@material-ui/core';
@@ -10,8 +10,15 @@ import { Link } from 'react-router-dom';
 import { Subject, Edit, Delete } from '@material-ui/icons/';
 
 import clients from '../clients';
+import Snackbar from '../components/Snackbar';
 
 const Activities = ({ activities, modifyActivity, deleteActivity, history }) => {
+  // snackbar
+  const [snackbarVisible, setSnackbarVisible] = useState(false);
+  const [snackbarStyle, setSnackbarStyle] = useState('success');
+  const [snackbarMessage, setSnackbarMessage] = useState('Message');
+
+  // add, modify and delete handlers
   const addActivityPress = () => {
 
   };
@@ -26,7 +33,7 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
           console.log('deleted')
         }
       })
-      .catch(e => console.error(e)); 
+      .catch(e => console.error(e));
   };
 
   if (activities.length === 0) {
@@ -44,43 +51,51 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
     );
   }
   return (
-    <Grid
-      item
-      xs={12}
-      md={9}
-      lg={6}
-    >
-      {
-        activities.map((activity, index) =>
-          <Card key={index} title={activity.name}>
-            <CardContent>
-              <h1>{activity.name}</h1>
-              <IconButton
-                onClick={() => history.push(`/activities/details/${activity['_id']}`)}
-              >
-                <Subject />
-              </IconButton>
-              <IconButton
-                onClick={() => history.push(`/activities/modify/${activity['_id']}`)}
-              >
-                <Edit />
-              </IconButton>
-              <IconButton
-                onClick={() => deleteActivityPress(activity['_id'])}
-              >
-                <Delete />
-              </IconButton>
-            </CardContent>
-          </Card>
-        )
-      }
-      <Button
-        variant="contained"
-        onClick={() => history.push('/activities/add')}
+    <>
+      <Grid
+        item
+        xs={12}
+        md={9}
+        lg={6}
       >
-        Add a new entry
+        {
+          activities.map((activity, index) =>
+            <Card key={index} title={activity.name}>
+              <CardContent>
+                <h1>{activity.name}</h1>
+                <IconButton
+                  onClick={() => history.push(`/activities/details/${activity['_id']}`)}
+                >
+                  <Subject />
+                </IconButton>
+                <IconButton
+                  onClick={() => history.push(`/activities/modify/${activity['_id']}`)}
+                >
+                  <Edit />
+                </IconButton>
+                <IconButton
+                  onClick={() => deleteActivityPress(activity['_id'])}
+                >
+                  <Delete />
+                </IconButton>
+              </CardContent>
+            </Card>
+          )
+        }
+        <Button
+          variant="contained"
+          onClick={() => history.push('/activities/add')}
+        >
+          Add a new entry
         </Button>
-    </Grid>
+      </Grid>
+      <Snackbar
+        visible={snackbarVisible}
+        style={snackbarStyle}
+        message={snackbarMessage}
+        onHide={() => setSnackbarVisible(false)}
+      />
+    </>
   );
 };
 
