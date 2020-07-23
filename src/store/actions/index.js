@@ -1,4 +1,3 @@
-/* eslint-disable import/prefer-default-export */
 export const setActivities = activities => ({
   type: 'ACTIVITIES_FETCHED',
   activities
