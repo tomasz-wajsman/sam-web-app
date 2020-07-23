@@ -30,10 +30,18 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
       .then(res => {
         if (res) {
           deleteActivity(activityID);
-          console.log('deleted')
+          setSnackbarStyle('success');
+          setSnackbarMessage('The activity was deleted');
         }
       })
-      .catch(e => console.error(e));
+      .catch(() => {
+        setSnackbarStyle('error');
+        setSnackbarMessage('The activity was not deleted');
+      })
+      .finally(() => {
+        console.log('finalrfjdhofgdjhofg');
+        setSnackbarVisible(true)
+      });
   };
 
   if (activities.length === 0) {
