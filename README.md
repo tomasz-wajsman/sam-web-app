@@ -3,11 +3,11 @@
 This React application allows the user to manage their sport activities.
 
 ### Functionalities
-* showing the saved activities
-* showing the selected activity details
-* adding a new activity
-* modyfying an existing activity
-* deleting an activity
+* show the saved activities
+* show the selected activity details
+* add a new activity
+* modify an existing activity
+* delete an activity
 
 ### How to use this application?
 1. Clone the repository and the *Sports Activity Manager Backend* server
