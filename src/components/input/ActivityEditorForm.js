@@ -182,7 +182,11 @@ const ActivityEditorForm = ({ onSubmit, editing, activities, selectedActivityInd
         helperText={messages.distance}
       />
       <br /><br /><br />
-      <Button onClick={submit}>
+      <Button
+        color="primary"
+        variant="contained"
+        onClick={submit}
+      >
         {editing ? 'SAVE' : 'ADD'}
       </Button>
     </div>
