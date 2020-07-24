@@ -1,6 +1,6 @@
 # Sports Activity Manager Web App
 
-This application allows the user to manage their sport activities.
+This React application allows the user to manage their sport activities.
 
 ### Functionalities
 * showing the saved activities
