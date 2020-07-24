@@ -10,6 +10,7 @@ import util from '../util';
 
 import clients from '../clients';
 import ActivityEditorForm from '../components/input/ActivityEditorForm';
+import Paragraph from '../components/labels/Paragraph';
 
 const ActivityEditForm = ({ history, activities, modifyActivity }) => {
   const getActivityIndexByID = activityID => activities.findIndex(activity => activity['_id'] === activityID);
@@ -25,11 +26,11 @@ const ActivityEditForm = ({ history, activities, modifyActivity }) => {
       console.error(activityID, details)
       const res = await clients.sam.modifyActivity(activityID, details);
       if (res) {
-        console.log(getActivityIndexByID(activityID),'index');
         modifyActivity(getActivityIndexByID(activityID), details);
+        history.goBack();
       }
     } catch (e) {
-
+      alert('Could not edit the activity');
     }
   };
   return (
@@ -41,7 +42,7 @@ const ActivityEditForm = ({ history, activities, modifyActivity }) => {
     >
       <Card>
         <CardContent>
-          <h1>Edit an activity</h1>
+          <Paragraph variant='h4'>Edit the activity</Paragraph>
           <ActivityEditorForm
             editing={true}
             onSubmit={handleEdit}
