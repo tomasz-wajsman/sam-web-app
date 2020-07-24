@@ -4,12 +4,17 @@ import { Provider as ReduxProvider } from 'react-redux';
 import store from './store';
 
 import Root from './Root';
+import { ThemeProvider } from '@material-ui/core';
 
-const App = () => { 
+import theme from './styles/theme';
+
+const App = () => {
   return (
-    <ReduxProvider store={store}>
-      <Root />
-    </ReduxProvider>
+    <ThemeProvider theme={theme}>
+      <ReduxProvider store={store}>
+        <Root />
+      </ReduxProvider>
+    </ThemeProvider>
   );
 }
 
