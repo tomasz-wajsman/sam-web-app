@@ -1,5 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-
 const initState = {
   items: [],
   selectedActivityIndex: -1

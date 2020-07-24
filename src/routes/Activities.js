@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Card, CardContent, IconButton, Grid, Typography } from '@material-ui/core';
+import { Button, Card, CardContent, IconButton, Grid } from '@material-ui/core';
 
-import { setActivities, setActivityIndex, addActivity, modifyActivity, deleteActivity } from '../store/actions';
+import { setActivityIndex, modifyActivity, deleteActivity } from '../store/actions';
 import { withRouter } from 'react-router';
 
-import { Link } from 'react-router-dom';
 import { Subject, Edit, Delete } from '@material-ui/icons/';
 
 import clients from '../clients';
 import Snackbar from '../components/Snackbar';
 import Paragraph from '../components/labels/Paragraph';
 
-const Activities = ({ activities, modifyActivity, deleteActivity, history }) => {
+const Activities = ({ activities, deleteActivity, history }) => {
   // snackbar
   const [snackbarVisible, setSnackbarVisible] = useState(false);
   const [snackbarStyle, setSnackbarStyle] = useState('success');

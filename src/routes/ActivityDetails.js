@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { Card, CardContent, Button, IconButton, Grid } from '@material-ui/core';
+import { Card, CardContent, IconButton, Grid } from '@material-ui/core';
 
 import { ArrowBack } from '@material-ui/icons';
 

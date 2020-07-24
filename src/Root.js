@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 
-import store from './store';
 import { setActivities } from './store/actions';
 
 import AppRouter from './routes';
 
 import clients from './clients';
+import Paragraph from './components/labels/Paragraph';
+import { Button } from '@material-ui/core';
 
 const Root = ({ setActivities }) => {
   // loading
@@ -40,7 +41,20 @@ const Root = ({ setActivities }) => {
   if (loading) {
     return (
       <div>
-        <p>Loading...</p>
+        <Paragraph>Please wait when the application is being loaded...</Paragraph>
+      </div>
+    );
+  } else if (loadingFailed) {
+    return (
+      <div>
+        <Paragraph>Loading failed. Please check your connection and retry.</Paragraph>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={() => loadActivities()}
+        >
+          Retry
+        </Button>
       </div>
     );
   }

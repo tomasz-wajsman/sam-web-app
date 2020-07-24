@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { Grid, IconButton, Card, CardContent, Typography } from '@material-ui/core';
+import { Grid, IconButton, Card, CardContent } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 
 import { addActivity } from '../store/actions';
