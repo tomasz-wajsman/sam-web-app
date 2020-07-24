@@ -27,7 +27,7 @@ const AppRouter = () => {
           <ActivityEditForm />
         </Route>
         <Route>
-          <p>404</p>
+          <p>404 not found</p>
         </Route>
       </Switch>
     </Router>

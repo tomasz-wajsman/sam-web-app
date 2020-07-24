@@ -2,14 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { Grid, IconButton, Card, CardContent } from '@material-ui/core';
+import { Grid, IconButton, Card, CardContent, Typography } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 
 import { addActivity } from '../store/actions';
 import util from '../util';
 
 import clients from '../clients';
+
 import ActivityEditorForm from '../components/input/ActivityEditorForm';
+import Paragraph from '../components/labels/Paragraph';
 
 const ActivityAddForm = ({ history, addActivity }) => {
   const handleAdd = async activityDetails => {
@@ -36,9 +38,9 @@ const ActivityAddForm = ({ history, addActivity }) => {
       md={9}
       lg={6}
     >
+      <Paragraph variant='h4'>Add an activity</Paragraph>
       <Card>
         <CardContent>
-          <h1>Add a new activity</h1>
           <ActivityEditorForm
             editing={false}
             onSubmit={handleAdd}

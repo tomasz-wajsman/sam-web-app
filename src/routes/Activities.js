@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import { Button, Card, CardContent, IconButton, Grid } from '@material-ui/core';
+import { Button, Card, CardContent, IconButton, Grid, Typography } from '@material-ui/core';
 
 import { setActivities, setActivityIndex, addActivity, modifyActivity, deleteActivity } from '../store/actions';
 import { withRouter } from 'react-router';
@@ -11,6 +11,7 @@ import { Subject, Edit, Delete } from '@material-ui/icons/';
 
 import clients from '../clients';
 import Snackbar from '../components/Snackbar';
+import Paragraph from '../components/labels/Paragraph';
 
 const Activities = ({ activities, modifyActivity, deleteActivity, history }) => {
   // snackbar
@@ -50,8 +51,9 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
     // show no activities message
     return (
       <>
-        <p>No activities added.</p>
+        <Paragraph variant='h4'>No activities added</Paragraph>
         <Button
+          color="primary"
           variant="contained"
           onClick={() => addActivityPress()}
         >
@@ -68,12 +70,12 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
         md={9}
         lg={6}
       >
-        <h1>Activities</h1>
+        <Paragraph variant='h4'>Sports activities</Paragraph>
         {
           activities.map((activity, index) =>
             <Card key={index} title={activity.name}>
               <CardContent>
-                <h3>{activity.name}</h3>
+                <Paragraph variant={'h6'}>{activity.name}</Paragraph>
                 <IconButton
                   onClick={() => history.push(`/activities/details/${activity['_id']}`)}
                 >
@@ -93,7 +95,9 @@ const Activities = ({ activities, modifyActivity, deleteActivity, history }) => 
             </Card>
           )
         }
+        <br />
         <Button
+          color="primary"
           variant="contained"
           onClick={() => history.push('/activities/add')}
         >

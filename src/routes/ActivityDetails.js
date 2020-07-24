@@ -6,6 +6,7 @@ import { ArrowBack } from '@material-ui/icons';
 
 import { withRouter, useParams } from 'react-router';
 import util from '../util';
+import Paragraph from '../components/labels/Paragraph';
 
 const ActivityDetails = ({ activities, history }) => {
   const getActivityIndexByID = activityID => activities.findIndex(activity => activity['_id'] === activityID);
@@ -21,12 +22,12 @@ const ActivityDetails = ({ activities, history }) => {
       >
         <Card title={details.name || 'Default title'}>
           <CardContent>
-            <h3>{details.name}</h3>
-            <p>{`Category: ${details.category || "uncategorized"}`}</p>
-            <p>{`Start date: ${util.date.unixToDate(details.start_date)}`}</p>
-            <p>{`End date: ${util.date.unixToDate(details.end_date)}`}</p>
+            <Paragraph variant='h4'>{details.name}</Paragraph>
+            <Paragraph>{`Category: ${details.category || "uncategorized"}`}</Paragraph>
+            <Paragraph>{`Start date: ${util.date.unixToDate(details.start_date)}`}</Paragraph>
+            <Paragraph>{`End date: ${util.date.unixToDate(details.end_date)}`}</Paragraph>
             {details.distance
-              ? <p>{`Distance: ${details.distance} meters`}</p>
+              ? <Paragraph>{`Distance: ${details.distance} meters`}</Paragraph>
               : <></>
             }
             <IconButton
@@ -41,7 +42,23 @@ const ActivityDetails = ({ activities, history }) => {
   }
   // 404 not found, return to previous page
   return (
-    <p>Not found</p>
+    <Grid
+      item
+      xs={12}
+      md={9}
+      lg={6}
+    >
+      <Card title='Activity not found'>
+        <CardContent>
+          <h1>Activity not found</h1>
+          <IconButton
+            onClick={() => history.goBack()}
+          >
+            <ArrowBack />
+          </IconButton>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 };
 

@@ -1,11 +1,12 @@
 import React from 'react';
 import { Button, Grid } from '@material-ui/core';
 import { withRouter } from 'react-router';
+import Paragraph from '../components/labels/Paragraph';
 
 const Home = ({ location, history }) => {
   return (
     <div>
-      <h1>Welcome to SAM, the Sports Activity Manager</h1>
+      <Paragraph variant='h4'>Welcome to SAM, the Sports Activity Manager</Paragraph>
       <Grid
         container
         direction="row"
@@ -13,7 +14,7 @@ const Home = ({ location, history }) => {
         alignItems="center"
       >
         <Grid item>
-          <Button variant="outlined" onClick={() => history.push('/activities')}>
+          <Button color="primary" variant="contained" onClick={() => history.push('/activities')}>
             View activities
           </Button>
         </Grid>
